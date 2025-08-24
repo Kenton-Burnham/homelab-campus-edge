@@ -1,0 +1,211 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.08.24 13:50:48 =~=~=~=~=~=~=~=~=~=~=~=
+login as: admin
+Keyboard-interactive authentication prompts from server:
+| Password: 
+End of keyboard-interactive prompts from server
+C
+* Authorized access only *
+
+SW3#terminal length 0
+SW3#show clock
+19:52:02.377 CDT Sun Aug 24 2025
+SW3#show version | include uptime|System image
+SW3 uptime is 1 hour, 14 minutes
+System image file is "flash:/c3750-ipservicesk9-mz.122-55.SE9/c3750-ipservicesk9-mz.122-55.SE9.bin"
+SW3#show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: VLAN0010, VLAN0020, VLAN0030
+Extended system ID           is enabled
+Portfast Default             is enabled
+PortFast BPDU Guard Default  is enabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0010                     0         0        0          3          3
+VLAN0020                     0         0        0          3          3
+VLAN0030                     0         0        0          3          3
+VLAN0099                     0         0        0          3          3
+VLAN0200                     0         0        0          3          3
+---------------------- -------- --------- -------- ---------- ----------
+5 vlans                      0         0        0         15         15
+SW3#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 1
+Number of aggregators:           1
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(SU)         LACP      Fa1/0/1(P)  Fa1/0/2(P)  Fa1/0/3(P)  
+                                 Fa1/0/4(P)  
+
+SW3#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Fa1/0/21    on               802.1q         trunking      99
+Fa1/0/24    on               802.1q         trunking      99
+Po1         on               802.1q         trunking      99
+
+Port        Vlans allowed on trunk
+Fa1/0/21    10,20,30,99,200
+Fa1/0/24    10,20,30,99,200
+Po1         10,20,30,99,200
+
+Port        Vlans allowed and active in management domain
+Fa1/0/21    10,20,30,99,200
+Fa1/0/24    10,20,30,99,200
+Po1         10,20,30,99,200
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa1/0/21    10,20,30,99,200
+Fa1/0/24    10,20,30,99,200
+Po1         10,20,30,99,200
+SW3#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa1/0/5, Fa1/0/6, Fa1/0/7
+                                                Fa1/0/8, Fa1/0/9, Fa1/0/10
+                                                Fa1/0/11, Fa1/0/12, Fa1/0/13
+                                                Fa1/0/14, Fa1/0/15, Fa1/0/16
+                                                Fa1/0/17, Fa1/0/18, Fa1/0/19
+                                                Fa1/0/20, Fa1/0/22, Fa1/0/23
+                                                Gi1/0/1, Gi1/0/2
+10   Management                       active    
+20   Users                            active    
+30   Servers                          active    
+99   Native                           active    
+200  R1_R3_PTP                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+SW3#show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa1/0/1   EtherChannel to SW connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/2   EtherChannel to SW connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/3   EtherChannel to SW connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/4   EtherChannel to SW connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/5                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/6                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/7                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/8                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/9                      notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/10                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/11                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/12                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/13                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/14                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/15                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/16                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/17                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/18                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/19                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/20                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/21  Uplink to SW1 G0/1 connected    trunk      a-full  a-100 10/100BaseTX
+Fa1/0/22                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/23                     notconnect   1            auto   auto 10/100BaseTX
+Fa1/0/24  Trunk to R1 G0/0   connected    trunk      a-full  a-100 10/100BaseTX
+Gi1/0/1                      notconnect   1            auto   auto Not Present
+Gi1/0/2                      notconnect   1            auto   auto Not Present
+Po1       Trunk to SW4 (Ethe connected    trunk      a-full  a-100 
+SW3#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10,20,30
+DHCP snooping is operational on following VLANs:
+10,20,30
+DHCP snooping is configured on the following L3 Interfaces:
+
+Insertion of option 82 is disabled
+   circuit-id default format: vlan-mod-port
+   remote-id: 001b.8f3e.b700 (MAC)
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Verification of giaddr field is enabled
+DHCP snooping trust/rate is configured on the following Interfaces:
+
+Interface                  Trusted    Allow option    Rate limit (pps)
+-----------------------    -------    ------------    ----------------   
+FastEthernet1/0/1          yes        yes             unlimited
+  Custom circuit-ids:
+FastEthernet1/0/2          yes        yes             unlimited
+  Custom circuit-ids:
+FastEthernet1/0/3          yes        yes             unlimited
+  Custom circuit-ids:
+FastEthernet1/0/4          yes        yes             unlimited
+  Custom circuit-ids:
+FastEthernet1/0/5          no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/6          no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/7          no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/8          no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/9          no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/10         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/11         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/12         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/13         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/14         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/15         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/16         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/17         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/18         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/19         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/20         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/21         yes        yes             unlimited
+  Custom circuit-ids:
+FastEthernet1/0/22         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/23         no         no              15        
+  Custom circuit-ids:
+FastEthernet1/0/24         yes        yes             unlimited
+  Custom circuit-ids:
+Port-channel1              yes        yes             unlimited
+  Custom circuit-ids:
+SW3#show ip dhcp snooping binding
+MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  --------------------
+Total number of bindings: 0
+
+SW3#show port-security address
+          Secure Mac Address Table
+--------------------------------------------------------------------------
+Vlan    Mac Address       Type                       Ports   Remaining Age
+                                                                (mins)    
+----    -----------       ----                       -----   -------------
+--------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 6144
+SW3#exit

@@ -1,0 +1,177 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.08.24 13:49:55 =~=~=~=~=~=~=~=~=~=~=~=
+login as: admin
+admin@192.168.1.11's password: 
+C
+* Authorized access only *
+
+SW1#terminal length 0
+SW1#show clock
+19:51:45.727 CDT Sun Aug 24 2025
+SW1#show version | include uptime|System image
+SW1 uptime is 1 hour, 15 minutes
+System image file is "flash:c2960-lanbasek9-mz.122-44.SE6/c2960-lanbasek9-mz.122-44.SE6.bin"
+SW1#show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: none
+Extended system ID           is enabled
+Portfast Default             is enabled
+PortFast BPDU Guard Default  is enabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0010                     0         0        0          2          2
+VLAN0020                     0         0        0          1          1
+VLAN0030                     0         0        0          1          1
+VLAN0099                     0         0        0          1          1
+VLAN0200                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+5 vlans                      0         0        0          6          6
+SW1#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 0
+Number of aggregators:           0
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+
+SW1#show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/1       on               802.1q         trunking      99
+
+Port        Vlans allowed on trunk
+Gi0/1       10,20,30,99,200
+
+Port        Vlans allowed and active in management domain
+Gi0/1       10,20,30,99,200
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/1       10,20,30,99,200
+SW1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/25, Gi0/26, Gi0/27, Gi0/28
+                                                Gi0/29, Gi0/30, Gi0/31, Gi0/32
+                                                Gi0/33, Gi0/34, Gi0/35, Gi0/36
+                                                Gi0/37, Gi0/38, Gi0/39, Gi0/40
+                                                Gi0/41, Gi0/42, Gi0/43, Gi0/44
+                                                Gi0/45, Gi0/46, Gi0/47, Gi0/48
+10   Management                       active    Gi0/2
+20   Users                            active    Gi0/3, Gi0/4, Gi0/5, Gi0/6
+                                                Gi0/7, Gi0/8, Gi0/9, Gi0/10
+                                                Gi0/11, Gi0/12, Gi0/13, Gi0/14
+                                                Gi0/15, Gi0/16, Gi0/17, Gi0/18
+                                                Gi0/19, Gi0/20, Gi0/21, Gi0/22
+                                                Gi0/23, Gi0/24
+30   Servers                          active    
+99   Native                           active    
+200  R1_R3_PTP                        active    
+1002 fddi-default                     act/unsup 
+1003 trcrf-default                    act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trbrf-default                    act/unsup 
+SW1#show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Gi0/1     Uplink to SW3 Fa0/ connected    trunk      a-full  a-100 10/100/1000BaseTX
+Gi0/2     PC jump port (Mgmt connected    10         a-full a-1000 10/100/1000BaseTX
+Gi0/3     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/4     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/5     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/6     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/7     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/8     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/9     User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/10    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/11    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/12    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/13    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/14    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/15    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/16    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/17    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/18    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/19    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/20    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/21    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/22    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/23    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/24    User access        notconnect   20           auto   auto 10/100/1000BaseTX
+Gi0/25                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/26                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/27                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/28                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/29                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/30                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/31                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/32                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/33                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/34                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/35                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/36                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/37                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/38                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/39                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/40                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/41                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/42                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/43                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/44                       notconnect   1            auto   auto 10/100/1000BaseTX
+Gi0/45                       notconnect   1            auto   auto Not Present
+Gi0/46                       notconnect   1            auto   auto Not Present
+Gi0/47                       notconnect   1            auto   auto Not Present
+Gi0/48                       notconnect   1            auto   auto Not Present
+SW1#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10,20,30
+DHCP snooping is operational on following VLANs:
+10,20,30
+DHCP snooping is configured on the following L3 Interfaces:
+
+Insertion of option 82 is disabled
+   circuit-id format: vlan-mod-port
+    remote-id format: MAC
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Verification of giaddr field is enabled
+DHCP snooping trust/rate is configured on the following Interfaces:
+
+Interface                    Trusted     Rate limit (pps)
+------------------------     -------     ----------------
+GigabitEthernet0/1           yes         unlimited
+SW1#show ip dhcp snooping binding
+MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  --------------------
+80:E8:2C:26:AC:EE   192.168.1.51     85224       dhcp-snooping   10    GigabitEthernet0/2
+Total number of bindings: 1
+
+SW1#show port-security address
+          Secure Mac Address Table
+------------------------------------------------------------------------
+Vlan    Mac Address       Type                     Ports   Remaining Age
+                                                              (mins)    
+----    -----------       ----                     -----   -------------
+  10    80e8.2c26.acee    SecureSticky             Gi0/2        -
+------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 8192
+SW1#

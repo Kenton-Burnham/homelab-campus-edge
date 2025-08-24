@@ -1,0 +1,64 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.08.24 13:48:04 =~=~=~=~=~=~=~=~=~=~=~=
+login as: admin
+Keyboard-interactive authentication prompts from server:
+| Password: 
+End of keyboard-interactive prompts from server
+C
+* Authorized access only *
+
+R2#terminal length 0
+R2#show clock
+19:47:56.183 CDT Sun Aug 24 2025
+R2#show version | include uptime|System image|bytes of memory
+R2 uptime is 1 hour, 9 minutes
+System image file is "flash:c2800nm-adventerprisek9-mz.151-4.M10.bin"
+Cisco 2851 (revision 1.0) with 512000K/12288K bytes of memory.
+R2#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0.10      192.168.1.253   YES NVRAM  up                    up      
+GigabitEthernet0/1         203.0.113.1     YES NVRAM  up                    up      
+Serial0/0/0                unassigned      YES NVRAM  administratively down down    
+Serial0/1/0                unassigned      YES NVRAM  administratively down down    
+Loopback0                  2.2.2.2         YES NVRAM  up                    up      
+R2#show ip route summary
+IP routing table name is default (0x0)
+IP routing table maximum-paths is 32
+Route Source    Networks    Subnets     Replicates  Overhead    Memory (bytes)
+connected       0           5           0           300         880
+static          1           0           0           60          176
+bgp 65002       0           0           0           0           0
+  External: 0 Internal: 0 Local: 0
+internal        3                                               1212
+Total           4           5           0           360         2268
+R2#show ip route 192.168.100.0
+Routing entry for 192.168.100.0/24
+  Known via "static", distance 1, metric 0
+  Routing Descriptor Blocks:
+  * 192.168.1.254
+      Route metric is 0, traffic share count is 1
+R2#show ip bgp summary
+BGP router identifier 2.2.2.2, local AS number 65002
+BGP table version is 2, main routing table version 2
+1 network entries using 136 bytes of memory
+1 path entries using 56 bytes of memory
+1/1 BGP path/bestpath attribute entries using 128 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 320 total bytes of memory
+BGP activity 1/0 prefixes, 1/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+203.0.113.2     4        65001       0       0        1    0    0 never    Active
+R2#show ip bgp neighbors | include BGP state|Local host
+  BGP state = Active
+R2#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0.10    1    90  P Active  local           192.168.1.254   192.168.1.1
+R2#show ip nat statistics
+R2#show policy-map control-plane
+R2#show policy-map type inspect zone-pair
+R2#show access-lists VLAN10-IN
+R2#exit

@@ -1,0 +1,290 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.08.24 13:46:39 =~=~=~=~=~=~=~=~=~=~=~=
+login as: admin
+Keyboard-interactive authentication prompts from server:
+| Password: 
+End of keyboard-interactive prompts from server
+C
+* Authorized access only *
+
+R1#terminal length 0
+R1#show clock
+19:46:58.675 CDT Sun Aug 24 2025
+R1#show version | include uptime|System image|bytes of memory
+R1 uptime is 1 hour, 8 minutes
+System image file is "flash:c2800nm-adventerprisek9-mz.151-4.M10.bin"
+Cisco 2851 (revision 1.0) with 249856K/12288K bytes of memory.
+R1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/0.10      192.168.1.254   YES NVRAM  up                    up      
+GigabitEthernet0/0.20      192.168.2.254   YES NVRAM  up                    up      
+GigabitEthernet0/0.30      192.168.3.254   YES NVRAM  up                    up      
+GigabitEthernet0/0.200     10.2.2.1        YES NVRAM  up                    up      
+GigabitEthernet0/1         203.0.113.2     YES NVRAM  up                    up      
+Serial0/0/0                unassigned      YES NVRAM  administratively down down    
+Loopback0                  1.1.1.1         YES NVRAM  up                    up      
+NVI0                       192.168.1.254   YES unset  up                    up      
+R1#show ip route summary
+IP routing table name is default (0x0)
+IP routing table maximum-paths is 32
+Route Source    Networks    Subnets     Replicates  Overhead    Memory (bytes)
+connected       0           11          0           660         1936
+static          0           0           0           0           0
+bgp 65001       1           1           0           120         352
+  External: 2 Internal: 0 Local: 0
+internal        7                                               2952
+Total           8           12          0           780         5240
+R1#show ip route 192.168.100.0
+Routing entry for 192.168.100.0/24
+  Known via "bgp 65001", distance 20, metric 0
+  Tag 65003, type external
+  Last update from 10.2.2.2 00:07:37 ago
+  Routing Descriptor Blocks:
+  * 10.2.2.2, from 10.2.2.2, 00:07:37 ago
+      Route metric is 0, traffic share count is 1
+      AS Hops 1
+      Route tag 65003
+      MPLS label: none
+R1#show ip bgp summary
+BGP router identifier 1.1.1.1, local AS number 65001
+BGP table version is 19, main routing table version 19
+6 network entries using 816 bytes of memory
+6 path entries using 336 bytes of memory
+3/3 BGP path/bestpath attribute entries using 384 bytes of memory
+1 BGP AS-PATH entries using 24 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 1560 total bytes of memory
+BGP activity 12/6 prefixes, 12/6 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.2.2.2        4        65003      13      13       19    0    0 00:07:36        2
+203.0.113.1     4        65002       0       0        1    0    0 never    Active
+R1#show ip bgp neighbors | include BGP state|Local host
+  BGP state = Established, up for 00:07:36
+Local host: 10.2.2.1, Local port: 35500
+  BGP state = Active
+R1#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Gi0/0.10    1    60  P Standby 192.168.1.253   local           192.168.1.1
+R1#show ip nat statistics
+Total active translations: 0 (0 static, 0 dynamic; 0 extended)
+Peak translations: 0
+Outside interfaces:
+  GigabitEthernet0/1
+Inside interfaces: 
+  GigabitEthernet0/0.10, GigabitEthernet0/0.20, GigabitEthernet0/0.30
+  GigabitEthernet0/0.200
+Hits: 0  Misses: 0
+CEF Translated packets: 0, CEF Punted packets: 0
+Expired translations: 0
+Dynamic mappings:
+-- Inside Source
+[Id: 1] access-list NAT_INSIDE interface GigabitEthernet0/1 refcount 0
+
+Total doors: 0
+Appl doors: 0
+Normal doors: 0
+Queued Packets: 0
+R1#show policy-map control-plane
+ Control Plane 
+
+  Service-policy input: PM-COPP
+
+    Class-map: CM-SSH (match-any)
+      1965 packets, 189672 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-SSH
+        1965 packets, 189672 bytes
+        5 minute rate 0 bps
+      police:
+          cir 512000 bps, bc 16000 bytes
+        conformed 1965 packets, 189672 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: CM-BGP (match-any)
+      515 packets, 41379 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-BGP
+        515 packets, 41379 bytes
+        5 minute rate 0 bps
+      police:
+          cir 256000 bps, bc 8000 bytes
+        conformed 515 packets, 41379 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: CM-HSRP (match-any)
+      1240 packets, 81836 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-HSRP
+        1240 packets, 81836 bytes
+        5 minute rate 0 bps
+      police:
+          cir 64000 bps, bc 2000 bytes
+        conformed 1240 packets, 81836 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: CM-NTP (match-any)
+      213 packets, 20022 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-NTP
+        213 packets, 20022 bytes
+        5 minute rate 0 bps
+      police:
+          cir 64000 bps, bc 2000 bytes
+        conformed 213 packets, 20022 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: CM-DHCP (match-any)
+      13 packets, 4770 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-DHCP
+        13 packets, 4770 bytes
+        5 minute rate 0 bps
+      police:
+          cir 512000 bps, bc 16000 bytes
+        conformed 13 packets, 4770 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: CM-ICMP (match-any)
+      0 packets, 0 bytes
+      5 minute offered rate 0 bps, drop rate 0 bps
+      Match: access-group name CP-ICMP
+        0 packets, 0 bytes
+        5 minute rate 0 bps
+      police:
+          cir 128000 bps, bc 4000 bytes
+        conformed 0 packets, 0 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 0 bps, exceed 0 bps
+
+    Class-map: class-default (match-any)
+      5757 packets, 1114509 bytes
+      5 minute offered rate 3000 bps, drop rate 0 bps
+      Match: any 
+      police:
+          cir 2000000 bps, bc 62500 bytes
+        conformed 5757 packets, 1114509 bytes; actions:
+          transmit 
+        exceeded 0 packets, 0 bytes; actions:
+          drop 
+        conformed 3000 bps, exceed 0 bps
+R1#show policy-map type inspect zone-pair
+
+policy exists on zp ZP-IN-OUT
+ Zone-pair: ZP-IN-OUT
+
+  Service-policy inspect : PM-INSIDE-TO-OUT
+
+    Class-map: CM-INSIDE-DNS (match-all)
+      Match: protocol dns
+
+   Inspect
+        Session creations since subsystem startup or last reset 0
+        Current session counts (estab/half-open/terminating) [0:0:0]
+        Maxever session counts (estab/half-open/terminating) [0:0:0]
+        Last session created never
+        Last statistic reset never
+        Last session creation rate 0
+        Maxever session creation rate 0
+        Last half-open session total 0
+        TCP reassembly statistics
+        received 0 packets out-of-order; dropped 0
+        peak memory usage 0 KB; current usage: 0 KB
+        peak queue length 0
+
+
+    Class-map: CM-INSIDE-ICMP (match-all)
+      Match: protocol icmp
+
+   Inspect
+        Session creations since subsystem startup or last reset 0
+        Current session counts (estab/half-open/terminating) [0:0:0]
+        Maxever session counts (estab/half-open/terminating) [0:0:0]
+        Last session created never
+        Last statistic reset never
+        Last session creation rate 0
+        Maxever session creation rate 0
+        Last half-open session total 0
+        TCP reassembly statistics
+        received 0 packets out-of-order; dropped 0
+        peak memory usage 0 KB; current usage: 0 KB
+        peak queue length 0
+
+
+    Class-map: CM-INSIDE-DEFAULT (match-all)
+      Match: protocol tcp
+      Match: protocol udp
+
+   Inspect
+        Session creations since subsystem startup or last reset 0
+        Current session counts (estab/half-open/terminating) [0:0:0]
+        Maxever session counts (estab/half-open/terminating) [0:0:0]
+        Last session created never
+        Last statistic reset never
+        Last session creation rate 0
+        Maxever session creation rate 0
+        Last half-open session total 0
+        TCP reassembly statistics
+        received 0 packets out-of-order; dropped 0
+        peak memory usage 0 KB; current usage: 0 KB
+        peak queue length 0
+
+
+    Class-map: class-default (match-any)
+      Match: any 
+      Drop
+        0 packets, 0 bytes
+
+policy exists on zp ZP-OUT-IN
+ Zone-pair: ZP-OUT-IN
+
+  Service-policy inspect : PM-OUT-TO-IN
+
+    Class-map: class-default (match-any)
+      Match: any 
+      Drop
+        0 packets, 0 bytes
+
+policy exists on zp ZP-INSIDE-INTRA
+ Zone-pair: ZP-INSIDE-INTRA
+
+  Service-policy inspect : PM-INSIDE-INSIDE
+
+    Class-map: class-default (match-any)
+      Match: any 
+      Pass
+        972 packets, 65726 bytes
+R1#show access-lists VLAN10-IN
+Extended IP access list VLAN10-IN
+    10 permit udp any eq bootpc any eq bootps (13 matches)
+    20 permit tcp 192.168.1.0 0.0.0.255 host 192.168.0.167 eq 8009
+    30 permit udp any eq bootps any eq bootpc
+    40 permit udp any host 224.0.0.2 eq 1985 (1240 matches)
+    50 permit udp 192.168.1.0 0.0.0.255 host 192.168.1.254 eq ntp (213 matches)
+    60 permit tcp 192.168.1.0 0.0.0.255 192.168.1.0 0.0.0.255 eq 22 (1999 matches)
+    70 permit tcp 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 22
+    80 permit tcp 192.168.1.0 0.0.0.255 192.168.100.0 0.0.0.255 eq 22 (304 matches)
+    90 permit udp 192.168.1.0 0.0.0.255 any eq domain (713 matches)
+    100 permit icmp any any
+    110 deny ip any any log (2976 matches)
+R1#exit

@@ -1,0 +1,132 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.08.24 13:50:35 =~=~=~=~=~=~=~=~=~=~=~=
+login as: admin
+admin@192.168.1.12's password: 
+C
+* Authorized access only *
+
+SW2#terminal length 0
+SW2#show clock
+19:51:56.168 CDT Sun Aug 24 2025
+SW2#show version | include uptime|System image
+SW2 uptime is 1 hour, 15 minutes
+System image file is "flash:/c2950-i6k2l2q4-mz.121-22.EA14.bin"
+SW2#show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: VLAN0099-VLAN0100, VLAN0200
+EtherChannel misconfig guard is enabled
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Pathcost method used         is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0010                     0         0        0          1          1
+VLAN0020                     0         0        0          1          1
+VLAN0030                     0         0        0          1          1
+VLAN0099                     0         0        0          1          1
+VLAN0100                     0         0        0          1          1
+VLAN0200                     0         0        0          2          2
+---------------------- -------- --------- -------- ---------- ----------
+6 vlans                      0         0        0          7          7
+SW2#show etherchannel summary
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        u - unsuitable for bundling
+        U - in use      f - failed to allocate aggregator
+        d - default port
+
+Number of channel-groups in use: 0
+Number of aggregators:           0
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+
+SW2#show interfaces trunk
+
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      99
+
+Port      Vlans allowed on trunk
+Fa0/1       10,20,30,99,200
+
+Port        Vlans allowed and active in management domain
+Fa0/1       10,20,30,99,200
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       10,20,30,99,200
+SW2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+10   Management                       active    
+20   Users                            active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23
+30   Servers                          active    
+99   Native                           active    
+100  BRANCH_LAN                       active    Fa0/10
+200  R1_R3_PTP                        active    Fa0/24
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+SW2#show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1     Trunk to SW4 Fa1/0 connected    trunk      a-full  a-100 10/100BaseTX
+Fa0/2     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/3     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/4     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/5     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/6     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/7     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/8     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/9     User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/10    R3 G0/1(Branch LAN connected    100        a-full  a-100 10/100BaseTX
+Fa0/11    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/12    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/13    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/14    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/15    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/16    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/17    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/18    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/19    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/20    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/21    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/22    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/23    User Access        notconnect   20           auto   auto 10/100BaseTX
+Fa0/24    To R3 G0/0 (VLAN 2 connected    200        a-full  a-100 10/100BaseTX
+SW2#show ip dhcp snooping
+Switch DHCP snooping is disabled
+DHCP snooping is configured on following VLANs:
+none
+Insertion of option 82 is disabled
+Interface                    Trusted     Rate limit (pps)
+------------------------     -------     ----------------
+SW2#show ip dhcp snooping binding
+Option 82 on untrusted port is not allowed
+MacAddress          IpAddress        Lease(sec)  Type     VLAN  Interface
+------------------  ---------------  ----------  -------  ----  --------------------
+SW2#show port-security address
+          Secure Mac Address Table
+-------------------------------------------------------------------
+Vlan    Mac Address       Type                Ports   Remaining Age
+                                                         (mins)    
+----    -----------       ----                -----   -------------
+-------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 1024
+
+SW2#exit
